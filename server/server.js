@@ -2,6 +2,8 @@ const express = require('express');
 const { Todo } = require('../models/todo');
 const bodyParser = require('body-parser');
 
+const port = process.env.PORT || 3000;
+
 const app = new express();
 app.use(bodyParser.json());
 
@@ -29,6 +31,14 @@ app.get('/todos',(req, res) => {
     });
 });
 
-app.listen(3000, () => {
+app.get('/todos/:id', (req, res) => {
+    Todo.findById(id).then( (todo) => {
+        res.send(todo);
+    }, (error) => {
+        res.send(error);
+    });
+});
+
+app.listen(port, () => {
    console.log('Express server started'); 
 });
