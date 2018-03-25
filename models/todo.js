@@ -9,7 +9,7 @@ var Todo = mongoose.model('Todo', {
     },
     completed:{
         type: Boolean,
-        completed: false
+        default: false
     },
     completedAt:{
         type: Number,
